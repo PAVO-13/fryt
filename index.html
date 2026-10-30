@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>Phyo Thiha | IT Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--ink:#101828;--muted:#667085;--line:#e4e7ec;--primary:#315efb;--primary-dark:#2148d8;--navy:#0b1220;--radius:22px;--shadow:0 16px 45px rgba(16,24,40,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:Inter,"Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(228,231,236,.85)}
+nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:1.15rem;font-weight:800;letter-spacing:-.04em}
+.logo span{color:var(--primary)}
+nav ul{display:flex;align-items:center;gap:26px;list-style:none}
+nav ul a{font-size:.9rem;color:#475467;font-weight:600;transition:color .2s}
+nav ul a:hover{color:var(--primary)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 19px;border-radius:12px;font-weight:700;font-size:.92rem;border:1px solid transparent;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--primary);color:white;box-shadow:0 8px 20px rgba(49,94,251,.2)}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-outline{border-color:var(--line);background:white;color:var(--ink)}
+section{padding:92px 0}
+.hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:70px;padding-top:70px;padding-bottom:70px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--primary);font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.eyebrow:before{content:"";width:26px;height:2px;background:var(--primary)}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;letter-spacing:-.065em;margin:18px 0 14px}
+.hero h2{font-size:clamp(1.1rem,2.2vw,1.55rem);color:var(--primary);line-height:1.45}
+.hero p{max-width:600px;color:var(--muted);margin:22px 0 28px;font-size:1.04rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-photo-wrap{position:relative;max-width:390px;justify-self:end;width:100%}
+.hero-photo-wrap:before{content:"";position:absolute;inset:24px -22px -22px 24px;background:#dce5ff;border-radius:32px}
+.hero-photo{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:28px;box-shadow:var(--shadow);background:#e9eefb}
+.social{display:flex;gap:12px;margin-top:28px}
+.social a{width:42px;height:42px;border-radius:13px;background:white;border:1px solid var(--line);display:grid;place-items:center;color:#344054;transition:.2s}
+.social a:hover{background:var(--primary);color:white;transform:translateY(-3px)}
+.section-heading{text-align:center;max-width:650px;margin:0 auto 48px}
+.section-heading .eyebrow{justify-content:center}
+.section-heading h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.05em;line-height:1.2;margin:12px 0}
+.section-heading p{color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:center}
+.about-photo{width:100%;max-width:330px;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
+.about-copy p{color:var(--muted);margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.stat{padding:18px 12px;background:white;border:1px solid var(--line);border-radius:16px;text-align:center}
+.stat strong{display:block;font-size:1.5rem;color:var(--primary);line-height:1.4}
+.stat span{font-size:.78rem;color:var(--muted)}
+.skills-grid,.services,.projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.skill-card,.service-box,.project-card,.contact-card,.timeline-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 8px 28px rgba(16,24,40,.035);transition:transform .25s,box-shadow .25s}
+.skill-card:hover,.service-box:hover,.project-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#edf1ff;color:var(--primary);font-size:1.2rem;margin-bottom:18px}
+.skill-card h3,.service-box h3,.project-card h3{font-size:1.08rem;margin-bottom:14px}
+.skill-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.skill-list li{font-size:.82rem;padding:6px 10px;border-radius:9px;background:#f2f4f7;color:#344054}
+.service-box p,.project-card p{color:var(--muted);font-size:.92rem}
+.timeline{max-width:820px;margin:auto;position:relative}
+.timeline:before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:2px;background:#d0d5dd;transform:translateX(-50%)}
+.timeline-item{width:50%;padding:0 32px 28px;position:relative}
+.timeline-item:before{content:"";position:absolute;right:-7px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--primary);border:4px solid #e5eaff;z-index:1}
+.timeline-item.right{margin-left:50%}
+.timeline-item.right:before{left:-7px;right:auto}
+.timeline-card h3{font-size:1rem}
+.timeline-card p{color:var(--muted);font-size:.9rem}
+.timeline-card time{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--primary);font-weight:700}
+.project-card{padding:16px;overflow:hidden;display:flex;flex-direction:column}.project-card .project-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 5px 8px}.project-card .project-actions .btn{font-size:.78rem;padding:9px 11px}.project-card .project-actions .btn-outline{background:#fff}.project-card .project-details{display:none;margin:0 5px 16px;padding:14px;border-radius:12px;background:#f7f8fc;border:1px solid var(--line);color:var(--muted);font-size:.88rem}.project-card .project-details.open{display:block;animation:fadeIn .25s ease}@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.project-card img{width:100%;height:210px;object-fit:cover;border-radius:14px;background:#eef2f6;margin-bottom:18px}
+.project-card h3,.project-card p{margin-inline:5px}
+.project-card p{margin-bottom:18px}
+.project-tag{display:inline-block;margin:0 5px 8px;padding:5px 9px;background:#edf1ff;color:var(--primary);border-radius:8px;font-size:.75rem;font-weight:700}
+.contact-section{background:var(--navy);color:white}
+.contact-section .section-heading p{color:#98a2b3}
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
+.contact-left{display:grid;gap:14px}
+.contact-card{background:#131d30;border-color:#263248;box-shadow:none;text-align:left}
+.contact-card i{font-size:1.35rem;color:#91a8ff;margin-bottom:12px}
+.contact-card h3{font-size:1rem;margin-bottom:4px}
+.contact-card p,.contact-card a{color:#b9c2d0;font-size:.9rem;overflow-wrap:anywhere}
+.contact-card a:hover{color:white}
+.contact-form{padding:28px;background:white;border-radius:var(--radius);color:var(--ink);display:grid;gap:14px}
+.contact-form label{font-size:.85rem;font-weight:700;color:#344054}
+.contact-form input,.contact-form textarea{width:100%;margin-top:6px;padding:13px 14px;border:1px solid #d0d5dd;border-radius:11px;font:inherit;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,94,251,.12)}
+.contact-form textarea{resize:vertical;min-height:140px}
+.form-note{font-size:.8rem;color:var(--muted)}
+footer{padding:28px 0;background:#080d17;color:#98a2b3;text-align:center;font-size:.85rem}
+footer strong{color:white}
+@media(max-width:900px){nav{flex-wrap:wrap;padding:14px 0}.logo{margin-right:auto}nav ul{order:3;width:100%;justify-content:center;gap:18px;flex-wrap:wrap}.nav-contact{display:none}.hero{gap:35px}.skills-grid,.services,.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.about-grid{gap:32px}}
+@media(max-width:640px){.container{width:min(100% - 30px,1120px)}section{padding:68px 0}nav{gap:10px}nav ul{gap:12px 17px}nav ul a{font-size:.82rem}.hero{min-height:auto;grid-template-columns:1fr;padding-top:60px;text-align:center}.hero .eyebrow{justify-content:center}.hero p{margin-inline:auto}.hero-actions,.social{justify-content:center}.hero-photo-wrap{justify-self:center;max-width:280px;margin:10px auto 15px}.about-grid,.contact-grid{grid-template-columns:1fr}.about-photo{max-width:250px;margin:0 auto}.stats{gap:8px}.stat{padding:14px 7px}.stat strong{font-size:1.25rem}.skills-grid,.services,.projects{grid-template-columns:1fr}.timeline:before{left:8px}.timeline-item,.timeline-item.right{width:100%;margin-left:0;padding:0 0 22px 30px}.timeline-item:before,.timeline-item.right:before{left:1px;right:auto}.contact-form{padding:20px}}
+
+/* Education & Experience section */
+.journey-section .section-heading{margin-bottom:48px}
+.journey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}
+.journey-column{min-width:0}
+.journey-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.journey-icon{display:grid;place-items:center;width:46px;height:46px;flex-shrink:0;border-radius:14px;background:#edf1ff;font-size:22px}
+.journey-title h3{font-size:1.35rem;font-weight:800}
+.journey-card{margin-bottom:18px;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px rgba(16,24,40,.035);transition:transform .25s,box-shadow .25s,border-color .25s}
+.journey-card:hover{transform:translateY(-4px);border-color:#b9c8ff;box-shadow:var(--shadow)}
+.journey-date{display:inline-block;margin-bottom:11px;padding:5px 10px;border-radius:8px;background:#edf1ff;color:var(--primary);font-size:.78rem;font-weight:800}
+.journey-card h4{margin-bottom:7px;font-size:1rem;line-height:1.6;overflow-wrap:anywhere}
+.journey-category{margin-bottom:12px;color:var(--muted);font-size:.82rem;font-weight:700}
+.journey-card p:not(.journey-category){color:var(--muted);font-size:.9rem;line-height:1.85}
+.journey-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.journey-tags span{padding:5px 9px;border:1px solid #dce4ff;border-radius:8px;background:#f7f8ff;color:var(--primary);font-size:.74rem;font-weight:700}
+@media(max-width:768px){.journey-grid{grid-template-columns:1fr;gap:24px}.journey-card{padding:21px}}
+@media(max-width:400px){.journey-card{padding:17px}.journey-card h4{font-size:.95rem}}
+
+
+
+/* Premium Education & Experience redesign */
+#qualification.journey-section{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f7f9ff 0%,#eef2ff 100%)}
+#qualification.journey-section:before{content:"";position:absolute;z-index:-1;width:420px;height:420px;right:-180px;top:40px;border-radius:50%;background:radial-gradient(circle,rgba(49,94,251,.13),rgba(49,94,251,0) 70%)}
+#qualification.journey-section:after{content:"";position:absolute;z-index:-1;width:340px;height:340px;left:-180px;bottom:30px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.10),rgba(14,165,233,0) 70%)}
+#qualification .section-heading{max-width:760px;margin-bottom:58px}
+#qualification .section-heading h2{font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:-.065em}
+#qualification .section-heading p{max-width:580px;margin:0 auto;font-size:1rem;line-height:1.9}
+#qualification .journey-grid{gap:30px;align-items:stretch}
+#qualification .journey-column{position:relative;padding:28px;border:1px solid rgba(210,219,241,.9);border-radius:26px;background:rgba(255,255,255,.72);box-shadow:0 20px 55px rgba(26,45,94,.07);backdrop-filter:blur(12px)}
+#qualification .journey-title{position:relative;display:flex;align-items:center;gap:15px;padding:0 0 23px;margin:0 0 24px;border-bottom:1px solid #e6eaf4}
+#qualification .journey-icon{width:54px;height:54px;border-radius:17px;background:linear-gradient(135deg,#315efb,#6d8cff);color:#fff;font-size:24px;box-shadow:0 9px 22px rgba(49,94,251,.23)}
+#qualification .journey-title h3{font-size:1.45rem;letter-spacing:-.035em}
+#qualification .journey-title:after{content:attr(data-label);margin-left:auto;color:#94a3b8;font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+#qualification .journey-card{position:relative;margin:0 0 16px;padding:23px 22px 22px 25px;border:1px solid #e6eaf2;border-radius:18px;background:#fff;box-shadow:0 5px 18px rgba(15,23,42,.035);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+#qualification .journey-card:last-child{margin-bottom:0}
+#qualification .journey-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#315efb,#8da5ff);opacity:.85}
+#qualification .journey-card:hover{transform:translateY(-4px);border-color:#c5d2ff;box-shadow:0 15px 32px rgba(34,67,150,.10)}
+#qualification .journey-date{margin-bottom:13px;padding:6px 10px;border:1px solid #e0e8ff;border-radius:8px;background:#f3f6ff;color:#315efb;font-size:.74rem;letter-spacing:.025em}
+#qualification .journey-card h4{margin:0 0 7px;color:#17233e;font-size:1.02rem;line-height:1.65;font-weight:800;letter-spacing:-.015em}
+#qualification .journey-category{margin:0 0 11px;color:#73809a;font-size:.79rem;font-weight:700;letter-spacing:.02em}
+#qualification .journey-card p:not(.journey-category){color:#58657c;font-size:.875rem;line-height:1.9}
+#qualification .journey-tags{gap:7px;margin-top:15px}
+#qualification .journey-tags span{padding:5px 9px;border:1px solid #e1e8ff;border-radius:7px;background:#f7f9ff;color:#3855a5;font-size:.7rem;letter-spacing:.01em}
+@media(max-width:900px){#qualification .journey-column{padding:22px}}
+@media(max-width:768px){#qualification.journey-section{padding:76px 0}#qualification .section-heading{margin-bottom:36px}#qualification .journey-grid{grid-template-columns:1fr;gap:22px}#qualification .journey-column{padding:20px;border-radius:22px}#qualification .journey-title{margin-bottom:18px;padding-bottom:18px}#qualification .journey-card{padding:20px 18px 19px 22px}}
+@media(max-width:420px){#qualification .journey-column{padding:15px}#qualification .journey-card{padding:18px 15px 17px 19px}#qualification .journey-card h4{font-size:.94rem}}
+
+
+
+/* Refined professional color system: midnight navy + emerald teal */
+:root{
+  --bg:#f4f7f8;
+  --surface:#ffffff;
+  --ink:#14212b;
+  --muted:#60717d;
+  --line:#dce5e8;
+  --primary:#0f766e;
+  --primary-dark:#115e59;
+  --navy:#0b1724;
+  --radius:22px;
+  --shadow:0 18px 48px rgba(13,37,48,.10);
+}
+body{background:var(--bg);color:var(--ink)}
+header{background:rgba(250,252,252,.94);border-bottom-color:rgba(210,224,228,.9)}
+nav ul a{color:#52636f}
+.btn-primary{background:linear-gradient(135deg,#0f766e,#0d9488);box-shadow:0 9px 24px rgba(15,118,110,.22)}
+.btn-primary:hover{background:linear-gradient(135deg,#115e59,#0f766e)}
+.btn-outline{border-color:#d4e0e4;background:#fff}
+.hero-photo-wrap:before{background:linear-gradient(135deg,#c6f1e8,#dbeafe)}
+.hero-photo{background:#e4f5f1}
+.social a{color:#29414c}
+.social a:hover{background:#0f766e}
+.card-icon{background:linear-gradient(135deg,#d8f3ed,#e5f2ff);color:#0f766e}
+.skill-list li{background:#edf4f5;color:#35515b}
+.project-card .project-details{background:#f3f8f8}
+.project-tag{background:#e0f5ef;color:#0f766e}
+.project-card img{background:#eaf1f3}
+.contact-section{background:linear-gradient(135deg,#0b1724 0%,#102b37 100%)}
+.contact-card{background:#132936;border-color:#284653}
+.contact-card i{color:#5eead4}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#0f766e;box-shadow:0 0 0 3px rgba(15,118,110,.13)}
+footer{background:#07111b}
+/* Education & Experience accent colors */
+#qualification.journey-section{background:linear-gradient(180deg,#f7fbfa 0%,#eaf5f3 100%)}
+#qualification.journey-section:before{background:radial-gradient(circle,rgba(13,148,136,.16),rgba(13,148,136,0) 70%)}
+#qualification.journey-section:after{background:radial-gradient(circle,rgba(59,130,246,.10),rgba(59,130,246,0) 70%)}
+#qualification .journey-column{border-color:rgba(204,224,222,.95);box-shadow:0 20px 55px rgba(16,61,65,.07)}
+#qualification .journey-title{border-bottom-color:#dceae8}
+#qualification .journey-icon{background:linear-gradient(135deg,#0f766e,#14b8a6);box-shadow:0 9px 22px rgba(15,118,110,.22)}
+#qualification .journey-card:before{background:linear-gradient(180deg,#0f766e,#5eead4)}
+#qualification .journey-card:hover{border-color:#8bd5c8;box-shadow:0 15px 32px rgba(15,118,110,.12)}
+#qualification .journey-date{border-color:#ccebe4;background:#e9f8f4;color:#0f766e}
+#qualification .journey-card h4{color:#172b35}
+#qualification .journey-category{color:#70838d}
+#qualification .journey-card p:not(.journey-category){color:#536a74}
+#qualification .journey-tags span{border-color:#cfe9e3;background:#f0faf7;color:#0f766e}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+.personal-intro-section{background:linear-gradient(135deg,#0b1220,#14233b);color:#fff;position:relative;overflow:hidden}
+.personal-intro-section .section-heading h2,.personal-intro-section .section-heading p{color:#fff}
+.personal-intro-section .section-heading p{opacity:.75}
+.personal-intro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.personal-intro-card{position:relative;padding:30px;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:rgba(255,255,255,.06);box-shadow:0 18px 45px rgba(0,0,0,.16);transition:transform .25s,border-color .25s,background .25s}
+.personal-intro-card:hover{transform:translateY(-7px);border-color:rgba(91,140,255,.75);background:rgba(255,255,255,.09)}
+.personal-intro-card .intro-number{position:absolute;right:24px;top:20px;color:rgba(255,255,255,.35);font-size:.85rem;font-weight:800;letter-spacing:.12em}
+.personal-intro-card .card-icon{color:#8eafff;background:rgba(75,119,255,.16);margin-bottom:18px}
+.personal-intro-card h3{color:#fff;font-size:1.2rem;margin-bottom:12px}
+.personal-intro-card p{color:rgba(255,255,255,.82);font-size:.94rem;line-height:1.85}
+.personal-intro-card .intro-en{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.62);font-size:.86rem}
+@media(max-width:700px){.personal-intro-grid{grid-template-columns:1fr}.personal-intro-card{padding:24px}}
+
+
+
+/* Blue professional theme */
+:root{
+  --bg:#f3f7ff;
+  --surface:#ffffff;
+  --ink:#14233f;
+  --muted:#61718b;
+  --line:#dce6f5;
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --navy:#0b1730;
+  --radius:22px;
+  --shadow:0 18px 48px rgba(30,64,125,.10);
+}
+body{background:var(--bg);color:var(--ink)}
+header{background:rgba(248,251,255,.95);border-bottom-color:rgba(210,224,245,.95)}
+nav ul a{color:#526581}
+nav ul a:hover{color:#2563eb}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#3b82f6);box-shadow:0 9px 24px rgba(37,99,235,.24)}
+.btn-primary:hover{background:linear-gradient(135deg,#1d4ed8,#2563eb)}
+.btn-outline{border-color:#d5e2f5;background:#fff;color:#19345f}
+.hero-photo-wrap:before{background:linear-gradient(135deg,#bfdbfe,#dbeafe)}
+.hero-photo{background:#eaf2ff}
+.social a{color:#294b7a}
+.social a:hover{background:#2563eb;color:#fff}
+.card-icon{background:linear-gradient(135deg,#dbeafe,#eff6ff);color:#2563eb}
+.skill-list li{background:#eaf2ff;color:#31527f}
+.project-card .project-details{background:#f1f6ff}
+.project-tag{background:#dbeafe;color:#1d4ed8}
+.project-card img{background:#eaf1fb}
+.contact-section{background:linear-gradient(135deg,#0b1730 0%,#153b70 100%)}
+.contact-card{background:#122b4e;border-color:#294d7c}
+.contact-card i{color:#93c5fd}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+footer{background:#071329}
+#qualification.journey-section{background:linear-gradient(180deg,#f7faff 0%,#eaf2ff 100%)}
+#qualification.journey-section:before{background:radial-gradient(circle,rgba(59,130,246,.17),rgba(59,130,246,0) 70%)}
+#qualification.journey-section:after{background:radial-gradient(circle,rgba(96,165,250,.13),rgba(96,165,250,0) 70%)}
+#qualification .journey-column{border-color:rgba(204,220,245,.98);box-shadow:0 20px 55px rgba(30,64,125,.08)}
+#qualification .journey-title{border-bottom-color:#dce8fa}
+#qualification .journey-icon{background:linear-gradient(135deg,#2563eb,#60a5fa);box-shadow:0 9px 22px rgba(37,99,235,.24)}
+#qualification .journey-card:before{background:linear-gradient(180deg,#2563eb,#93c5fd)}
+#qualification .journey-card:hover{border-color:#93baf5;box-shadow:0 15px 32px rgba(37,99,235,.13)}
+#qualification .journey-date{border-color:#c8dcfb;background:#edf4ff;color:#1d4ed8}
+#qualification .journey-card h4{color:#172b4d}
+#qualification .journey-category{color:#7184a2}
+#qualification .journey-card p:not(.journey-category){color:#536985}
+#qualification .journey-tags span{border-color:#cfe0fb;background:#f0f6ff;color:#2456a5}
+.personal-intro-section{background:linear-gradient(135deg,#0b1730,#153b70)}
+.personal-intro-card:hover{border-color:rgba(96,165,250,.85);background:rgba(255,255,255,.09)}
+.personal-intro-card .card-icon{color:#93c5fd;background:rgba(59,130,246,.20)}
+::selection{background:#bfdbfe;color:#10264a}
+
+/* PREMIUM BLUE EDITION — layered midnight / sapphire visual system */
+:root{--bg:#071426;--surface:#0d2039;--ink:#edf5ff;--muted:#a6bad5;--line:rgba(148,183,230,.18);--primary:#62a8ff;--primary-dark:#2878e8;--navy:#061225;--radius:24px;--shadow:0 24px 70px rgba(0,0,0,.28)}
+html{scroll-behavior:smooth}body{background:#071426;color:#edf5ff;background-image:radial-gradient(ellipse at 12% 5%,rgba(36,111,219,.18),transparent 34%),radial-gradient(ellipse at 90% 34%,rgba(29,78,216,.11),transparent 30%)}
+header{background:rgba(5,17,34,.82);backdrop-filter:blur(22px);border-bottom:1px solid rgba(125,177,245,.16);box-shadow:0 8px 35px rgba(0,0,0,.12)}
+.logo{color:#f5f9ff;letter-spacing:-.06em}.logo span{color:#66b3ff}nav ul a{color:#b8c9e0}nav ul a:hover{color:#76baff}
+.btn{border-radius:13px;padding:13px 21px;letter-spacing:.01em}.btn-primary{background:linear-gradient(115deg,#2478ed,#59b5ff);color:white;box-shadow:0 10px 30px rgba(36,120,237,.32),inset 0 1px rgba(255,255,255,.25)}.btn-primary:hover{background:linear-gradient(115deg,#1765d3,#3b9df4);box-shadow:0 14px 34px rgba(36,120,237,.42)}.btn-outline{background:rgba(13,32,57,.7);border-color:rgba(142,185,242,.3);color:#e6f1ff}.btn-outline:hover{border-color:#65adff;background:rgba(40,120,232,.14)}
+section{position:relative}.hero{min-height:calc(100vh - 76px);padding-top:95px;padding-bottom:100px;gap:clamp(38px,7vw,100px)}#home{overflow:hidden;background:radial-gradient(ellipse at 75% 48%,rgba(27,103,205,.22),transparent 38%),linear-gradient(135deg,#071426 0%,#0a1d36 58%,#0b2344 100%)}#home:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(148,190,245,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(148,190,245,.12) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,#000 55%,transparent)}.hero-text,.hero-photo-wrap{z-index:1}.eyebrow{color:#7bbcff;letter-spacing:.18em;font-size:.75rem}.eyebrow:before{background:linear-gradient(90deg,#3b82f6,#8bd2ff);height:2px;width:34px}.hero h1{color:#f5f9ff;font-size:clamp(3.2rem,7vw,6rem);letter-spacing:-.075em}.hero h2{color:#79bdff;font-weight:700}.hero p{color:#b1c5df;line-height:1.95}.hero-photo-wrap:before{inset:22px -20px -20px 22px;border-radius:34px;background:linear-gradient(145deg,#287de8,#72c8ff);filter:blur(.2px)}.hero-photo{border:1px solid rgba(194,224,255,.45);border-radius:30px;box-shadow:0 28px 80px rgba(0,0,0,.42);background:#102947}.social a{background:rgba(255,255,255,.06);border:1px solid rgba(155,194,245,.2);color:#d8eaff}.social a:hover{background:#2878e8;border-color:#64b6ff}
+#about,#skills,#services,#qualification,#projects{background:transparent}#about,#services{background:linear-gradient(180deg,rgba(11,31,55,.82),rgba(7,20,38,.72))}#skills,#projects{background:linear-gradient(180deg,rgba(5,17,33,.72),rgba(11,30,53,.86))}
+.section-heading h2{color:#f0f6ff;letter-spacing:-.06em}.section-heading p{color:#a9bdd7}.about-copy p{color:#b0c3dc}.about-photo{border:1px solid rgba(128,183,249,.3);box-shadow:0 24px 65px rgba(0,0,0,.32)}.stats .stat{background:linear-gradient(145deg,#102947,#0b1d34);border-color:var(--line);box-shadow:0 12px 30px rgba(0,0,0,.16)}.stat strong{color:#7dbdff}.stat span{color:#a8bdd8}
+.skill-card,.service-box,.project-card,.contact-card,.timeline-card,.journey-card{background:linear-gradient(145deg,rgba(17,43,73,.96),rgba(10,27,49,.98));border:1px solid rgba(132,181,239,.19);box-shadow:0 16px 42px rgba(0,0,0,.2);color:#eaf3ff}.skill-card:hover,.service-box:hover,.project-card:hover{transform:translateY(-8px);border-color:rgba(94,169,255,.55);box-shadow:0 24px 55px rgba(0,0,0,.32),0 0 0 1px rgba(83,158,255,.08)}.skill-card h3,.service-box h3,.project-card h3,.timeline-card h3{color:#f1f7ff}.service-box p,.project-card p,.timeline-card p{color:#afc2dc}.card-icon,.journey-icon{background:linear-gradient(145deg,rgba(37,120,237,.28),rgba(91,181,255,.12));border:1px solid rgba(112,183,255,.24);color:#82c5ff}.skill-list li{background:rgba(87,151,225,.12);border:1px solid rgba(133,185,245,.12);color:#c7ddf7}.project-tag{background:rgba(55,137,235,.16);border:1px solid rgba(106,177,255,.2);color:#8bc6ff}.project-card img{border:1px solid rgba(140,190,245,.2);background:#0b1e36}.project-card .project-actions .btn-outline{background:rgba(255,255,255,.05);color:#d9eaff;border-color:rgba(142,185,242,.25)}.project-card .project-details{background:#091a30;border-color:rgba(142,185,242,.2);color:#b7cbe4}
+#qualification.journey-section{background:radial-gradient(ellipse at 50% 0%,rgba(37,120,237,.15),transparent 48%),linear-gradient(180deg,#0a1d35,#071426)}#qualification .journey-column{background:rgba(12,31,54,.78);border:1px solid rgba(127,177,237,.2);box-shadow:0 22px 60px rgba(0,0,0,.22);backdrop-filter:blur(12px)}#qualification .journey-title{border-bottom-color:rgba(142,185,242,.17)}#qualification .journey-title h3{color:#eff6ff}#qualification .journey-card{background:linear-gradient(145deg,#112b4a,#0b1e36);border-color:rgba(135,184,242,.2)}#qualification .journey-card:before{background:linear-gradient(180deg,#3b8cf0,#8bd2ff)}#qualification .journey-card h4{color:#edf5ff}#qualification .journey-card p:not(.journey-category){color:#afc3dc}#qualification .journey-category{color:#8faaca}#qualification .journey-date{background:rgba(54,133,228,.15);border-color:rgba(115,179,250,.22);color:#8bc5ff}#qualification .journey-tags span{background:rgba(54,133,228,.12);border-color:rgba(115,179,250,.18);color:#a9d2ff}
+.personal-intro-section{background:radial-gradient(ellipse at 15% 15%,rgba(43,128,236,.22),transparent 38%),linear-gradient(135deg,#071426,#0b2342 70%,#102c50)}.personal-intro-card{background:linear-gradient(145deg,rgba(25,58,94,.72),rgba(10,29,52,.86));border-color:rgba(139,190,248,.22);box-shadow:0 20px 55px rgba(0,0,0,.22)}.personal-intro-card:hover{border-color:#68b5ff;background:linear-gradient(145deg,rgba(33,83,139,.78),rgba(12,36,65,.92));box-shadow:0 25px 60px rgba(0,0,0,.32)}.personal-intro-card h3{color:#f4f9ff}.personal-intro-card p{color:#c3d5eb}.personal-intro-card .intro-en{color:#94b2d5;border-top-color:rgba(160,199,245,.18)}.personal-intro-card .intro-number{color:rgba(177,211,250,.45)}
+.contact-section{background:radial-gradient(ellipse at 80% 0%,rgba(42,126,230,.2),transparent 40%),linear-gradient(135deg,#061225,#0b2342)}.contact-section .section-heading h2{color:#f4f8ff}.contact-card{background:linear-gradient(145deg,#102b4b,#0a1d35);border-color:rgba(137,188,247,.2)}.contact-card i{color:#81c3ff}.contact-card p,.contact-card a{color:#b5cbe5}.contact-card a:hover{color:#fff}.contact-form{background:linear-gradient(145deg,#fafdff,#eaf3ff);box-shadow:0 24px 65px rgba(0,0,0,.25)}.contact-form label{color:#183455}.contact-form input,.contact-form textarea{background:#fff;border-color:#cbdcf0;color:#102b4b}.contact-form input:focus,.contact-form textarea:focus{border-color:#398cf0;box-shadow:0 0 0 4px rgba(57,140,240,.14)}footer{background:#040d1b;border-top:1px solid rgba(135,184,242,.16);color:#91a9c8}
+::selection{background:#398cf0;color:#fff}
+@media(max-width:640px){.hero{padding-top:68px;padding-bottom:75px}.hero h1{font-size:clamp(2.8rem,13vw,4.2rem)}.hero-photo-wrap:before{inset:14px -10px -10px 14px}header{background:rgba(5,17,34,.94)}}
+@media(prefers-reduced-motion:no-preference){.skill-card,.service-box,.project-card,.journey-card,.personal-intro-card{animation:premiumRise .7s both}@keyframes premiumRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}}
+
+
+
+/* PREMIUM CONCEPT 02 — OBSIDIAN / SAPPHIRE */
+:root{
+ --bg:#080d18;--surface:#101a2b;--ink:#edf4ff;--muted:#9aabc4;--line:rgba(151,180,224,.17);
+ --primary:#5b9dff;--primary-dark:#3278e8;--navy:#060b14;--radius:24px;
+ --shadow:0 24px 70px rgba(0,0,0,.34)
+}
+html{background:#080d18}
+body{background:radial-gradient(ellipse at 78% 5%,rgba(36,91,173,.19),transparent 32%),#080d18;color:#edf4ff}
+header{background:rgba(7,13,24,.82);border-bottom:1px solid rgba(126,169,235,.16);box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.logo{color:#f4f8ff}.logo span{color:#75b2ff}
+nav ul a{color:#a9b9d0}nav ul a:hover{color:#80baff}
+.btn-primary{background:linear-gradient(120deg,#347fe8,#76b7ff);color:#061225;box-shadow:0 10px 30px rgba(55,133,239,.3)}
+.btn-primary:hover{background:linear-gradient(120deg,#5b9dff,#a0d0ff)}
+.btn-outline{border-color:rgba(145,184,240,.35);background:rgba(255,255,255,.035);color:#e8f2ff}
+section{position:relative}
+.hero{background:radial-gradient(ellipse at 78% 45%,rgba(40,107,207,.2),transparent 38%)}
+.eyebrow{color:#83baff}.eyebrow:before{background:linear-gradient(90deg,#4b91f5,#a7d7ff)}
+.hero h1,.section-heading h2{color:#f4f8ff}
+.hero h2{color:#80b8ff}.hero p,.section-heading p,.about-copy p{color:#a3b3ca}
+.hero-photo-wrap:before{background:linear-gradient(135deg,#4a91f4,#b7dcff);opacity:.72}
+.hero-photo{border:1px solid rgba(184,216,255,.45);box-shadow:0 30px 85px rgba(0,0,0,.5)}
+.social a{background:rgba(255,255,255,.055);border-color:var(--line);color:#c6d8f2}.social a:hover{background:#347fe8;color:#fff}
+#about,#skills,#qualification,#projects{background:transparent;color:#edf4ff}
+#introduction,.personal-intro-section{background:linear-gradient(145deg,#0c1729,#101f36 58%,#0a1424);border-block:1px solid rgba(123,170,238,.1)}
+#services{background:linear-gradient(180deg,rgba(18,33,55,.55),rgba(8,13,24,0));}
+.skill-card,.service-box,.project-card,.stat,.timeline-card{background:linear-gradient(145deg,rgba(20,34,55,.96),rgba(12,22,38,.98));border:1px solid rgba(139,177,231,.17);color:#edf4ff;box-shadow:0 18px 48px rgba(0,0,0,.2)}
+.skill-card:hover,.service-box:hover,.project-card:hover{border-color:rgba(105,169,255,.55);box-shadow:0 24px 60px rgba(22,94,190,.2)}
+.skill-card h3,.service-box h3,.project-card h3,.journey-title h3{color:#f2f7ff}
+.skill-card p,.service-box p,.project-card p,.stat span{color:#a4b5cd}
+.card-icon{background:linear-gradient(135deg,rgba(57,128,225,.25),rgba(127,190,255,.12));color:#8fc2ff;border:1px solid rgba(120,177,244,.2)}
+.skill-list li{background:rgba(88,143,214,.13);color:#c6ddfb;border:1px solid rgba(120,174,238,.12)}
+.stat strong{color:#82baff}.stat{backdrop-filter:blur(12px)}
+.project-card .project-details{background:rgba(5,12,22,.72);color:#c3d5ef}
+.project-tag{background:rgba(72,139,226,.18);color:#a9d0ff;border:1px solid rgba(120,174,238,.18)}
+.project-card img{background:#101c30}
+#qualification.journey-section{background:radial-gradient(ellipse at 50% 0%,rgba(39,104,194,.16),transparent 52%),#0a1220}
+#qualification.journey-column{background:rgba(15,27,45,.72);border-color:rgba(139,177,231,.18);box-shadow:0 22px 60px rgba(0,0,0,.22);backdrop-filter:blur(16px)}
+#qualification .journey-title{border-bottom-color:rgba(139,177,231,.17)}
+#qualification .journey-icon{background:linear-gradient(135deg,#347fe8,#86c5ff);color:#071326;box-shadow:0 10px 28px rgba(52,127,232,.28)}
+#qualification .journey-card{background:linear-gradient(145deg,#14243b,#0e1a2c);border-color:rgba(139,177,231,.15);box-shadow:0 12px 32px rgba(0,0,0,.16)}
+#qualification .journey-card h4{color:#f0f6ff}#qualification .journey-category,#qualification .journey-card p:not(.journey-category){color:#a6b8d1}
+#qualification .journey-date{background:rgba(64,137,228,.15);border-color:rgba(117,177,244,.25);color:#9bcaff}
+#qualification .journey-tags span{background:rgba(64,137,228,.1);border-color:rgba(117,177,244,.2);color:#b5d7ff}
+#qualification .journey-card:before{background:linear-gradient(180deg,#438cf0,#a9d9ff)}
+.contact-section{background:radial-gradient(ellipse at 15% 20%,rgba(43,104,190,.22),transparent 42%),linear-gradient(145deg,#0b1729,#060b14);border-top:1px solid rgba(139,177,231,.15)}
+.contact-section .section-heading h2,.contact-section .section-heading p{color:#f0f6ff}
+.contact-card{background:rgba(255,255,255,.045);border-color:rgba(139,177,231,.17)}
+.contact-card i{color:#8fc2ff}.contact-card p,.contact-card a{color:#b4c5dc}
+.contact-form{background:linear-gradient(145deg,#14243b,#0e192b);border:1px solid rgba(139,177,231,.2);box-shadow:0 24px 65px rgba(0,0,0,.25)}
+.contact-form label{color:#d9e8fb}.contact-form input,.contact-form textarea{background:#091323;border-color:rgba(139,177,231,.22);color:#f2f7ff}.contact-form input::placeholder,.contact-form textarea::placeholder{color:#7185a2}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#68aaff;box-shadow:0 0 0 3px rgba(76,145,238,.17)}
+.form-note{color:#91a6c3}footer{background:#050912;border-top:1px solid rgba(139,177,231,.12);color:#8499b6}
+.personal-intro-card{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border-color:rgba(139,177,231,.2);box-shadow:0 20px 55px rgba(0,0,0,.2)}
+.personal-intro-card:hover{border-color:rgba(120,184,255,.65);box-shadow:0 24px 65px rgba(35,105,200,.17)}
+::selection{background:#347fe8;color:#fff}
+@media(max-width:640px){.hero{background:radial-gradient(ellipse at 50% 30%,rgba(40,107,207,.17),transparent 58%)}}
+
+</style>
+</head>
+<body>
+<header>
+  <nav class="container" aria-label="Main navigation">
+    <a class="logo" href="#home">Phyo<span>.</span></a>
+    <ul>
+      <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#skills">Skills</a></li>
+      <li><a href="#services">Services</a></li><li><a href="#qualification">Journey</a></li><li><a href="#projects">Projects</a></li>
+    </ul>
+    <a class="btn btn-primary nav-contact" href="#contact">Contact <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+  </nav>
+</header>
+<main>
+<section id="home">
+  <div class="container hero">
+    <div class="hero-text">
+      <span class="eyebrow">IT Student · Web Developer</span>
+      <h1>Hi, I'm<br>Phyo Thiha.</h1>
+      <h2>Information Technology Engineering</h2>
+      <p>I'm an IT student in Japan who enjoys building web experiences and learning how software works. I'm developing my skills in Java and web development, one project at a time.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#projects">Explore My Work <i class="fa-solid fa-arrow-right"></i></a><a class="btn btn-outline" href="#contact">Get in Touch</a></div>
+      <div class="social" aria-label="Social links">
+        <a href="https://www.facebook.com/share/1G8cu1vowE/?mibextid=wwXIfr" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://line.me/ti/p/-t_kkRTEyR" aria-label="LINE"><i class="fa-brands fa-line"></i></a>
+        <a href="https://www.instagram.com/zenitsu.bb/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap"><img class="hero-photo" src="images/IMG_1171.jpeg" alt="Portrait of Phyo Thiha"></div>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="section-heading"><span class="eyebrow">A little about me</span><h2>About Me</h2><p>Curious by nature. Focused on building useful things.</p></div>
+    <div class="about-grid">
+      <img class="about-photo" src="images/IMG_1171.jpeg" alt="Phyo Thiha">
+      <div class="about-copy">
+        <div class="stats"><div class="stat"><strong>3+</strong><span>Projects</span></div><div class="stat"><strong>Java</strong><span>Core focus</span></div><div class="stat"><strong>Web</strong><span>Development</span></div></div>
+        <p>私はPHYO THIHAです。現在、日本で情報技術を学んでいます。プログラミングに興味があり、特にJavaを使った開発を勉強しています。</p>
+        <p>授業や課題を通して、問題を解決する力や論理的に考える力を身につけてきました。また、新しい知識を学ぶことが好きで、わからないことがあれば自分で調べながら積極的に取り組んでいます。</p>
+        <p>将来はIT業界で活躍できるエンジニアになりたいと考えています。そのために、プログラミング技術だけでなく、コミュニケーション能力やチームワークも向上させていきたいです。</p>
+        <a class="btn btn-primary" href="履歴書.xlsx" download>Download CV <i class="fa-solid fa-download"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="introduction" class="personal-intro-section">
+  <div class="container">
+    <div class="section-heading"><span class="eyebrow">Beyond the code</span><h2>Personal Introduction</h2><p>My background, values, interests, and the reason I want to become an IT engineer.</p></div>
+    <div class="personal-intro-grid">
+      <article class="personal-intro-card"><span class="intro-number">01</span><div class="card-icon"><i class="fa-solid fa-plane-departure"></i></div><h3>From Myanmar to Japan</h3><p>ミャンマーから日本へ来て、新しい環境の中で日本語とITを学んでいます。挑戦を続けながら、自分のできることを少しずつ増やしています。</p><p class="intro-en">I came from Myanmar to Japan to challenge myself, learn a new language, and build a future in technology.</p></article>
+      <article class="personal-intro-card"><span class="intro-number">02</span><div class="card-icon"><i class="fa-solid fa-handshake"></i></div><h3>Responsible &amp; Trustworthy</h3><p>任された仕事は最後まで責任を持って取り組みます。アルバイトでは、周りのスタッフと協力し、忙しいときも声を掛け合うことを大切にしています。</p><p class="intro-en">I take responsibility for my tasks, communicate with teammates, and work hard to earn trust.</p></article>
+      <article class="personal-intro-card"><span class="intro-number">03</span><div class="card-icon"><i class="fa-solid fa-gamepad"></i></div><h3>FPS Games &amp; Camping</h3><p>趣味はFPSゲームとキャンプです。ルームメイトや友人とキャンプに行き、自然の中で過ごす時間を楽しんでいます。</p><p class="intro-en">I enjoy FPS games and camping with my roommate and friends. These hobbies help me refresh and enjoy time with others.</p></article>
+      <article class="personal-intro-card"><span class="intro-number">04</span><div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div><h3>Technology That Helps People</h3><p>人々の生活や仕事に役立つシステムを作りたいと考えています。新しい技術を学び、使う人の立場を考えた開発ができるエンジニアを目指しています。</p><p class="intro-en">I want to create useful systems that help people and make everyday tasks easier.</p></article>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="container">
+    <div class="section-heading"><span class="eyebrow">What I'm learning</span><h2>Technical Skills</h2><p>Tools and technologies I'm exploring through coursework and projects.</p></div>
+    <div class="skills-grid">
+      <article class="skill-card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Frontend Development</h3><ul class="skill-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Bootstrap</li></ul></article>
+      <article class="skill-card"><div class="card-icon"><i class="fa-solid fa-server"></i></div><h3>Backend Development</h3><ul class="skill-list"><li>Java</li><li>SQLite</li><li>GitHub</li><li>Linux</li></ul></article>
+      <article class="skill-card"><div class="card-icon"><i class="fa-solid fa-people-group"></i></div><h3>Ways of Working</h3><ul class="skill-list"><li>Problem Solving</li><li>Teamwork</li><li>Self Learning</li><li>Communication</li><li>Logical Thinking</li></ul></article>
+    </div>
+  </div>
+</section>
+<section id="services">
+  <div class="container">
+    <div class="section-heading"><span class="eyebrow">Areas of interest</span><h2>What I Do</h2><p>My current areas of study and development.</p></div>
+    <div class="services">
+      <article class="service-box"><div class="card-icon"><i class="fa-solid fa-display"></i></div><h3>Frontend Development</h3><p>HTML、CSS、JavaScriptを使用して、レスポンシブで見やすいWebサイトの制作に取り組んでいます。使いやすさとデザインの両方を意識しながら、Web開発の知識を深めています。</p></article>
+      <article class="service-box"><div class="card-icon"><i class="fa-solid fa-database"></i></div><h3>Backend Development</h3><p>Javaやデータベースを学び、Webアプリケーションの仕組みを理解するために練習しています。機能を一つずつ実装しながら、保守しやすく効率的なコードを書く力を身につけています。</p></article>
+      <article class="service-box"><div class="card-icon"><i class="fa-solid fa-layer-group"></i></div><h3>Full-Stack Projects</h3><p>フロントエンドとバックエンドの両方を学び、Webアプリケーション全体の流れを理解することを目指しています。プロジェクトを通して、設計・実装・改善の経験を積んでいます。</p></article>
+    </div>
+  </div>
+</section>
+<section id="qualification" class="journey-section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">My Background</span>
+      <h2>Education &amp; Experience</h2>
+      <p>My education, work experience, and journey toward becoming an IT engineer.</p>
+    </div>
+
+    <div class="journey-grid">
+      <div class="journey-column">
+        <div class="journey-title"><span class="journey-icon">🎓</span><h3>Education</h3></div>
+
+        <article class="journey-card">
+          <span class="journey-date">2018 – 2020</span>
+          <h4>THURATHIHA PRIVATE SCHOOL</h4>
+          <p class="journey-category">High School</p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">2020 – 2023</span>
+          <h4>YADANABON UNIVERSITY</h4>
+          <p class="journey-category">English Studies</p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">2024 – 2026</span>
+          <h4>東京福祉大学 留学生日本語別科</h4>
+          <p class="journey-category">Japanese Studies</p>
+          <p>日本語を学び、日本での進学や生活に必要な日本語力を身につけました。</p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">2026 – 2028</span>
+          <h4>愛和システムエンジニア専門学校</h4>
+          <p class="journey-category">IT Engineering</p>
+          <p>Java、HTML、CSS、JavaScriptなどを学習し、Web制作やプログラミングの課題に取り組んでいます。</p>
+          <div class="journey-tags"><span>Java</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        </article>
+      </div>
+
+      <div class="journey-column">
+        <div class="journey-title"><span class="journey-icon">💼</span><h3>Experience</h3></div>
+
+        <article class="journey-card">
+          <span class="journey-date">2024 – 2026</span>
+          <h4>おらが蕎麦 名古屋ユニモール店</h4>
+          <p class="journey-category">Kitchen Staff · Part-time</p>
+          <p>調理補助、盛り付け、仕込みなどを担当しました。忙しい時間帯にはホールスタッフと連携し、周囲と協力して仕事を進める力や責任感を身につけました。</p>
+          <div class="journey-tags"><span>Teamwork</span><span>Responsibility</span><span>Communication</span></div>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">Jan 2026 – Mar 2026</span>
+          <h4>チャオ JR名古屋駅太閤通り口店</h4>
+          <p class="journey-category">Kitchen Staff · Part-time</p>
+          <p>キッチンスタッフとして業務に取り組み、周囲と協力しながら仕事を進める経験を積みました。</p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">School Project</span>
+          <h4>Hotel Reservation System</h4>
+          <p class="journey-category">Java Development · Team Project</p>
+          <p>学校のチーム制作で、ホテルの予約や顧客管理を行うシステムの開発に取り組みました。チーム内で情報を共有し、協力して課題を解決することを学びました。</p>
+          <div class="journey-tags"><span>Java</span><span>Team Project</span></div>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-date">IT Internship</span>
+          <h4>IT Company Internship</h4>
+          <p class="journey-category">Company Introduction</p>
+          <p>IT企業のインターンシップに参加し、企業について話を聞くことで、IT業界への理解を深め、ITエンジニアとして働くことへの関心が高まりました。</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Projects</h2>
+      <p>学校で学んだ技術を活用して制作したプロジェクトを紹介します。</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- Project 1: Java Programming Game -->
+      <article class="project-card">
+        <img
+          src="images/スクリーンショット (1).png"
+          alt="Javaで制作したランダムカードゲーム"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">Random</span>
+          <span class="project-tag">Game Logic</span>
+        </div>
+
+        <h3>Java Programming Game</h3>
+
+        <p>
+          Javaを使ってランダムカードゲームを作成しました。
+          ゲームのルールや処理を自分で考えながら実装し、
+          条件分岐や乱数の使い方など、プログラミングの基礎を学びました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            Javaの乱数機能を利用して、カードゲームの処理を実装しました。
+            ゲームの流れを考え、条件分岐や変数を使ってプログラムを作成しました。
+            開発を通して、問題を整理して解決する力を身につけました。
+          </p>
+          <p><strong>使用技術：</strong> Java</p>
+          <p><strong>学んだこと：</strong> 条件分岐、乱数、ゲームロジック</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 2: Website Design -->
+      <article class="project-card">
+        <img
+          src="images/スクリーンショット (3).png"
+          alt="HTMLとCSSで制作したWebサイト"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">Web Design</span>
+        </div>
+
+        <h3>Website Design</h3>
+
+        <p>
+          HTMLとCSSを使ってWebサイトを制作しました。
+          画像やテキストの配置、配色、ページ全体の構成を工夫し、
+          利用者にとって見やすく分かりやすいデザインを目指しました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            Webページのレイアウトや文字の大きさ、余白、色の組み合わせを調整しました。
+            制作を通して、HTMLでページの構造を作り、
+            CSSで見た目を整える方法を学びました。
+          </p>
+          <p><strong>使用技術：</strong> HTML、CSS</p>
+          <p><strong>学んだこと：</strong> Webページの構成、レイアウト、配色</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+
+          <!-- Replace # with your published website URL -->
+          <a class="btn btn-outline"
+             href="#"
+             onclick="event.preventDefault(); alert('公開したWebサイトのURLを設定してください。');">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Live Demo
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 3: Teamwork Java Programming Game -->
+      <article class="project-card">
+        <img
+          src="images/IMG_1177.jpeg"
+          alt="チームで取り組んだJavaプログラミング"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">Teamwork</span>
+          <span class="project-tag">Communication</span>
+        </div>
+
+        <h3>Teamwork Java Programming Game</h3>
+
+        <p>
+          チームでゲーム開発に取り組みました。
+          メンバーと相談しながら作業を進め、
+          役割分担や情報共有、協力して問題を解決することの大切さを学びました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            チームメンバーとコミュニケーションを取りながら、
+            ゲームの開発を進めました。
+            自分の担当作業に責任を持って取り組み、
+            困ったときには相談しながら解決方法を考えました。
+          </p>
+          <p><strong>使用技術：</strong> Java</p>
+          <p><strong>学んだこと：</strong> チーム開発、役割分担、情報共有</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 4: Employee Management System -->
+      <article class="project-card">
+        <img
+          src="images/スクリーンショット 2026-10-22 155755.png"
+          alt="Javaで制作した社員管理システム"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">Servlet</span>
+          <span class="project-tag">JSP</span>
+        </div>
+
+        <h3>Employee Management System</h3>
+
+        <p>
+          Javaを使って社員情報を一覧表示するシステムを制作しました。
+          社員の名前やメールアドレス、身長、体重などの情報を画面に表示し、
+          データを扱うWebアプリケーションの仕組みを学びました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            JavaのServletやJSPを使って、社員データを取得し、
+            ブラウザに一覧表示する処理を学習しました。
+            また、社員情報を見やすく整理し、
+            Web画面とJavaの処理が連携する仕組みを理解しました。
+          </p>
+          <p><strong>使用技術：</strong> Java、Servlet、JSP</p>
+          <p><strong>学んだこと：</strong> データ取得、画面表示、MVCの基礎</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 5: Food Menu Application -->
+      <article class="project-card">
+        <img
+          src="images/スクリーンショット 2026-10-22 155927.png"
+          alt="Javaで制作した料理メニューアプリケーション"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">JDBC</span>
+          <span class="project-tag">SQLite</span>
+        </div>
+
+        <h3>Food Menu Application</h3>
+
+        <p>
+          Javaを使って料理メニューを表示するアプリケーションを制作しました。
+          メニューの一覧表示やキーワード検索などの機能を実装し、
+          データを取得して利用する方法を学びました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            Model、Controller、Viewの役割を分けてプログラムを作成しました。
+            データベースから料理情報を取得し、
+            一覧表示やキーワードによる検索を行う処理に取り組みました。
+          </p>
+          <p><strong>使用技術：</strong> Java、JDBC、SQLite</p>
+          <p><strong>学んだこと：</strong> SQLの利用、データ検索、クラスの役割分担</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 6: Character Collection Website -->
+      <article class="project-card">
+        <img
+          src="images/スクリーンショット 2026-10-27 140106.png"
+          alt="キャラクターを紹介するWebサイト"
+          loading="lazy"
+        >
+
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">Web Design</span>
+        </div>
+
+        <h3>Character Collection Website</h3>
+
+        <p>
+          HTMLとCSSを使ってキャラクターを紹介するWebサイトを制作しました。
+          画像や名前、価格、特徴をカード形式で表示し、
+          情報を分かりやすく伝えるページデザインを工夫しました。
+        </p>
+
+        <div class="project-details">
+          <strong>プロジェクトの詳細</strong>
+          <p>
+            複数のキャラクター情報をカード形式で整理し、
+            画像やテキストの配置、背景色、余白を調整しました。
+            制作を通して、複数の情報を見やすく表示するレイアウトを学びました。
+          </p>
+          <p><strong>使用技術：</strong> HTML、CSS</p>
+          <p><strong>学んだこと：</strong> カードレイアウト、情報整理、デザイン</p>
+        </div>
+
+        <div class="project-actions">
+          <button class="btn btn-primary details-toggle"
+                  type="button"
+                  aria-expanded="false">
+            もっと見る
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <a class="btn btn-outline"
+             href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-heading"><span class="eyebrow">Let's connect</span><h2>Get in Touch</h2><p>Have a question or want to talk about a project? Feel free to reach out.</p></div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="contact-card"><i class="fa-regular fa-envelope"></i><h3>Email</h3><p>phyothiha240115@gmail.com</p><a href="mailto:phyothiha240115@gmail.com">Send an email →</a></div>
+        <div class="contact-card"><i class="fa-solid fa-phone"></i><h3>Phone</h3><p>+81 070 1634 2744</p><a href="tel:+8107016342744">Call me →</a></div>
+        <div class="contact-card"><i class="fa-brands fa-facebook-messenger"></i><h3>Messenger</h3><p>Phyo Thiha</p><a href="https://m.me/natorikun">Message me →</a></div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <label for="name">Your name<input id="name" name="name" type="text" placeholder="Enter your name" required></label>
+        <label for="email">Email address<input id="email" name="email" type="email" placeholder="Enter your email" required></label>
+        <label for="message">Message<textarea id="message" name="message" placeholder="Tell me about your project or question" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Prepare Message <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="form-note">This form opens your email app with the message prepared; it does not send anything automatically.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="container"><p><strong>Phyo Thiha</strong> · IT Student & Web Developer</p><p>© 2026 Phyo Thiha. All rights reserved.</p></div></footer>
+<script>
+document.querySelectorAll('.details-toggle').forEach(button=>button.addEventListener('click',()=>{
+  const card=button.closest('.project-card');
+  const details=card.querySelector('.project-details');
+  const isOpen=details.classList.toggle('open');
+  button.setAttribute('aria-expanded',String(isOpen));
+  button.innerHTML=isOpen?'Hide Details <i class="fa-solid fa-chevron-up"></i>':'View Details <i class="fa-solid fa-chevron-down"></i>';
+}));
+document.querySelectorAll('nav ul a').forEach(link=>link.addEventListener('click',()=>{
+  document.querySelectorAll('nav ul a').forEach(item=>item.removeAttribute('aria-current'));
+  link.setAttribute('aria-current','page');
+}));
+document.getElementById('contactForm').addEventListener('submit',function(event){
+  event.preventDefault();
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const message=document.getElementById('message').value.trim();
+  const subject=encodeURIComponent('Portfolio contact from '+name);
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+  window.location.href='mailto:phyothiha240115@gmail.com?subject='+subject+'&body='+body;
+});
+</script>
+</body>
+</html>
